@@ -1,5 +1,6 @@
 package com.sexology;
 
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
@@ -12,9 +13,22 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.google.gson.Gson;
+import com.sexology.model.Question;
+
+import org.json.JSONObject;
+
 public class MainActivity extends AppCompatActivity {
 
     private TextView mTextMessage;
+    private Question question = null;
+
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -49,11 +63,54 @@ public class MainActivity extends AppCompatActivity {
 
     public void addQuestion(View view) {
 
-        LinearLayout linearLayout = findViewById(R.id.linearLayout);
+
+        //First call the server to add the question
+        //Once the add question call to the server is complete get the id and set it to the button id
         EditText editText = findViewById(R.id.questionText);
-        Button textView = new Button(this);
-        textView.setText(editText.getText());
+        invokeAddQuestionApi(editText.getText().toString());
+    }
+
+    private void invokeAddQuestionApi(final String questionString){
+
+        final RequestQueue queue = Volley.newRequestQueue(this);
+        //TODO remove hardcoded user id and also the server base address needs to be configurable
+        String url ="http://172.16.49.126:8080/api/question/add/12345/" + questionString ;
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        question = new Gson().fromJson(response, Question.class);
+                        addQuestionButton(question);
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                //Lets handle this later
+            }
+        });
+// Add the request to the RequestQueue.
+        queue.add(stringRequest);
+    }
+
+
+    private void addQuestionButton(Question question){
+        final Button textView = new Button(this);
+        final LinearLayout linearLayout = findViewById(R.id.linearLayout);
+
+
+        textView.setTag(question.getQuestionId());
+        textView.setText(question.getQuestionString());
         linearLayout.addView(textView);
+        textView.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View view) {
+                TextView textView = (TextView) view;
+                textView.getText();
+                textView.getTag();
+            }
+        });
 
     }
 }
