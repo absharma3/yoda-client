@@ -95,10 +95,8 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void addQuestionButton(Question question){
-        final Button textView = new Button(this);
-        final LinearLayout linearLayout = findViewById(R.id.linearLayout);
-
-
+        Button textView = new Button(this);
+        LinearLayout linearLayout = findViewById(R.id.linearLayout);
         textView.setTag(question.getQuestionId());
         textView.setText(question.getQuestionString());
         linearLayout.addView(textView);
