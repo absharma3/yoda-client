@@ -100,6 +100,7 @@ public class MainActivity extends AppCompatActivity {
         linearLayout.addView(textView);
         textView.setOnClickListener(new View.OnClickListener(){
 
+
             @Override
             public void onClick(View view) {
                 TextView textView = (TextView) view;
