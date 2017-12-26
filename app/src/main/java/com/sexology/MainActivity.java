@@ -62,8 +62,6 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void addQuestion(View view) {
-
-
         //First call the server to add the question
         //Once the add question call to the server is complete get the id and set it to the button id
         EditText editText = findViewById(R.id.questionText);
