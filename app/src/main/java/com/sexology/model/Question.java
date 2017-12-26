@@ -1,5 +1,6 @@
 package com.sexology.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -8,19 +9,19 @@ import java.util.List;
  * Created by abhimanyus on 12/26/17.
  */
 
-public class Question {
+public class Question implements Serializable{
 
 
 
 
-    String questionId;
-    String userId;
-    StringBuilder questionString;
+    String questionId = null;
+    String userId = null;
+    StringBuilder questionString = null;
     List<String> comments = new ArrayList<String>();
-    String iPAddress;
-    String answerString;
-    Date createdDate;
-    Date modifiedDate;
+    String iPAddress = null;
+    String answerString = null;
+    Date createdDate = null;
+    Date modifiedDate = null;
 
 
     public String getQuestionId() {
