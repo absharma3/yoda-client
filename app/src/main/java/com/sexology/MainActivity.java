@@ -2,6 +2,7 @@ package com.sexology;
 
 import android.content.Intent;
 import android.content.res.Resources;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
@@ -27,38 +28,12 @@ import org.json.JSONObject;
 
 public class MainActivity extends AppCompatActivity {
 
-    private TextView mTextMessage;
-    private Question question = null;
 
-
-    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
-            = new BottomNavigationView.OnNavigationItemSelectedListener() {
-
-        @Override
-        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            switch (item.getItemId()) {
-                case R.id.navigation_home:
-                    mTextMessage.setText(R.string.title_home);
-                    return true;
-                case R.id.navigation_dashboard:
-                    mTextMessage.setText(R.string.title_dashboard);
-                    return true;
-                case R.id.navigation_notifications:
-                    mTextMessage.setText(R.string.title_notifications);
-                    return true;
-            }
-            return false;
-        }
-    };
-
+    private Question question;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        mTextMessage = (TextView) findViewById(R.id.message);
-        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
-        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
     }
 
 
@@ -73,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
 
         final RequestQueue queue = Volley.newRequestQueue(this);
         //TODO remove hardcoded user id and also the server base address needs to be configurable
-        String url = "http://192.168.0.4:8080/api/question/add/12345/" + questionString;
+        String url = "http://172.16.49.126:8080/api/question/add/12345/" + questionString;
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
@@ -100,6 +75,7 @@ public class MainActivity extends AppCompatActivity {
         LinearLayout linearLayout = findViewById(R.id.linearLayout);
         textView.setTag(question.getQuestionId());
         textView.setText(question.getQuestionString());
+//        textView.setBackgroundColor(Color.parseColor("#FF039858"));
         linearLayout.addView(textView);
         final Intent intent = new Intent(this, QuestionDetailActivity.class);
         textView.setOnClickListener(new View.OnClickListener() {
