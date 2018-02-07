@@ -7,4 +7,28 @@
         <item name="android:statusBarColor">@color/colorPrimaryDark</item>
         <item name="android:colorControlHighlight">@color/rippleColor</item>
     </style>
+
+    <style name="askQuestionTheme" parent="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:statusBarColor">@color/q_color_primary_dark</item>
+        <item name="android:colorControlHighlight">@color/rippleColor</item>
+    </style>
+
+    <style name="jokeTheme" parent="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:statusBarColor">@color/joke_primary_color_dark</item>
+        <item name="android:colorControlHighlight">@color/rippleColor</item>
+    </style>
+
+    <style name="articleTheme" parent="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:statusBarColor">@color/article_primary_color_dark</item>
+        <item name="android:colorControlHighlight">@color/rippleColor</item>
+    </style>
 </resources>

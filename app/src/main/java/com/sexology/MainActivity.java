@@ -19,9 +19,11 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.getbase.floatingactionbutton.FloatingActionsMenu;
 import com.google.gson.Gson;
 import com.sexology.model.Question;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -29,6 +31,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
     private Question question;
+    @BindView(R.id.fabMenu)
+    FloatingActionsMenu floatingActionsMenu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,15 +41,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         ButterKnife.bind(this);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        /*FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });*/
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -59,9 +54,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @OnClick({R.id.fab_post_question, R.id.fab_post_joke, R.id.fab_post_article})
     public void onClicked(View view) {
+        floatingActionsMenu.collapse();
         switch (view.getId()) {
             case R.id.fab_post_question:
                 startActivity(new Intent(MainActivity.this, AskQuestionActivity.class));
+                break;
+            case R.id.fab_post_joke:
+                startActivity(new Intent(MainActivity.this, PostJokeActivity.class));
+                break;
+            case R.id.fab_post_article:
+                startActivity(new Intent(MainActivity.this, PostArticleActivity.class));
                 break;
         }
     }

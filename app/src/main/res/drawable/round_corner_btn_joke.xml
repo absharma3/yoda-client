@@ -2,12 +2,12 @@
     android:shape="rectangle">
     <gradient
         android:angle="90"
-        android:endColor="@color/q_color_primary_dark"
-        android:startColor="@color/q_color_primary_dark" />
+        android:endColor="@color/joke_primary_color_dark"
+        android:startColor="@color/joke_primary_color_dark" />
 
     <corners android:radius="8dip" />
 
     <stroke
         android:width="1px"
-        android:color="@color/q_color_primary_dark" />
+        android:color="@color/colorPrimaryDark" />
 </shape>
