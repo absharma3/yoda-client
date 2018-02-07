@@ -1,19 +1,17 @@
 package com.sexology;
 
 import android.content.Intent;
-import android.content.res.Resources;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.constraint.ConstraintLayout;
-import android.support.design.widget.BottomNavigationView;
+import android.support.design.widget.NavigationView;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -24,16 +22,48 @@ import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
 import com.sexology.model.Question;
 
-import org.json.JSONObject;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
 
     private Question question;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ButterKnife.bind(this);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        /*FloatingActionButton fab = findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }
+        });*/
+
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
+
+        NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+    }
+
+    @OnClick({R.id.fab_post_question, R.id.fab_post_joke, R.id.fab_post_article})
+    public void onClicked(View view) {
+        switch (view.getId()) {
+            case R.id.fab_post_question:
+                startActivity(new Intent(MainActivity.this, AskQuestionActivity.class));
+                break;
+        }
     }
 
 
@@ -55,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         question = new Gson().fromJson(response, Question.class);
-                        addQuestionButton(question);
+//                        addQuestionButton(question);
                     }
                 }, new Response.ErrorListener() {
             @Override
@@ -69,6 +99,11 @@ public class MainActivity extends AppCompatActivity {
         queue.add(stringRequest);
     }
 
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        return false;
+    }
+/*
 
     private void addQuestionButton(final Question question) {
         Button textView = new Button(this);
@@ -86,5 +121,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+    }*/
+
+    @OnClick(R.id.ask_question_btn)
+    public void askQuestionBtnClick() {
+        startActivity(new Intent(MainActivity.this, AskQuestionActivity.class));
     }
 }

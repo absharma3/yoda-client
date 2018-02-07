@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    android:orientation="vertical"
+    tools:context="com.sexology.AskQuestionActivity">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/ask_question_activity_toolbar" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="8dp"
+        android:background="@drawable/toolbr_shadow" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <EditText
+            android:id="@+id/questionEt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:gravity="center"
+            android:hint="What is your question?"
+            android:minHeight="150dp"
+            android:paddingBottom="26dp"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp"
+            android:paddingTop="26dp"
+            android:textColor="@android:color/white"
+            android:textColorHint="@android:color/white"
+            android:textSize="26sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/questionEt"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:background="@color/colorPrimaryDark" />
+
+        <EditText
+            android:id="@+id/questionDescriptionEt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/questionEt"
+            android:background="@null"
+            android:gravity="left|top"
+            android:hint="Description about your question (optional)"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp"
+            android:paddingTop="16dp"
+            android:textColor="@android:color/white"
+            android:textColorHint="@color/white_alpha"
+            android:textSize="14sp" />
+
+        <com.balysv.materialripple.MaterialRippleLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="16dp"
+            android:layout_marginLeft="36dp"
+            android:layout_marginRight="36dp"
+            android:background="@drawable/round_corner_btn_publish"
+            android:imeOptions="actionDone"
+            app:mrl_rippleColor="@color/rippleColor"
+            app:mrl_rippleOverlay="true">
+
+            <Button
+                android:id="@+id/publish_question_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:text="Publish"
+                android:textColor="@android:color/white" />
+        </com.balysv.materialripple.MaterialRippleLayout>
+    </RelativeLayout>
+
+</LinearLayout>
