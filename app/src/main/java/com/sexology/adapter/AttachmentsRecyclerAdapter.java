@@ -1,6 +1,7 @@
 package com.sexology.adapter;
 
 import android.content.Context;
+import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -8,13 +9,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import com.bumptech.glide.Glide;
 import com.sexology.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * Created by piyush on 7/2/18.
@@ -22,11 +24,12 @@ import butterknife.ButterKnife;
 
 public class AttachmentsRecyclerAdapter extends RecyclerView.Adapter<AttachmentsRecyclerAdapter.MyViewHolder> {
     private final Context context;
-    private final ArrayList<String> filePaths;
+    private final ArrayList<Uri> imagesUris;
+    private String TAG = "test";
 
-    public AttachmentsRecyclerAdapter(Context context, ArrayList<String> filePaths) {
+    public AttachmentsRecyclerAdapter(Context context, ArrayList<Uri> filePaths) {
         this.context = context;
-        this.filePaths = filePaths;
+        this.imagesUris = filePaths;
     }
 
     @Override
@@ -37,18 +40,20 @@ public class AttachmentsRecyclerAdapter extends RecyclerView.Adapter<Attachments
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        String path = filePaths.get(position);
-//        Glide.with(context).load(path).into(holder.imageView);
+        Uri uri = imagesUris.get(position);
+        Log.d(TAG, "onBindViewHolder: " + position);
+        Log.d(TAG, "filepaths: " + uri);
+        Picasso.with(context).load(uri).into(holder.imageView);
     }
 
     @Override
     public int getItemCount() {
-        return filePaths.size();
+        return imagesUris.size();
     }
 
-    public void addImage(String filePath) {
-        filePaths.add(filePath);
-        notifyItemInserted(filePaths.size() - 1);
+    public void addImage(Uri filePath) {
+        imagesUris.add(filePath);
+        notifyItemInserted(imagesUris.size() - 1);
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
@@ -57,7 +62,13 @@ public class AttachmentsRecyclerAdapter extends RecyclerView.Adapter<Attachments
 
         public MyViewHolder(View itemView) {
             super(itemView);
-            ButterKnife.bind(true, itemView);
+            ButterKnife.bind(this, itemView);
+        }
+
+        @OnClick(R.id.removeAttachment)
+        public void removeAttachmentClick() {
+            imagesUris.remove(getAdapterPosition());
+            notifyItemRemoved(getAdapterPosition());
         }
     }
 }

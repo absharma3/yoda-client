@@ -27,7 +27,7 @@ public class PostArticleActivity extends AppCompatActivity {
     private ImagePicker imagePicker = new ImagePicker();
     @BindView(R.id.recycler_view)
     RecyclerView mRecyclerView;
-    ArrayList<String> filePaths = new ArrayList<>();
+    ArrayList<Uri> imageUris = new ArrayList<>();
     private AttachmentsRecyclerAdapter mAdapter;
 
     @Override
@@ -40,7 +40,7 @@ public class PostArticleActivity extends AppCompatActivity {
 
     private void initRecyclerView() {
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
-        mAdapter = new AttachmentsRecyclerAdapter(this, filePaths);
+        mAdapter = new AttachmentsRecyclerAdapter(this, imageUris);
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
         mRecyclerView.setAdapter(mAdapter);
@@ -77,7 +77,7 @@ public class PostArticleActivity extends AppCompatActivity {
             private void setImageInContainer(Uri imageUri) {
                 String filePath = imageUri.toString().replace("file://", "");
                 File file = new File(filePath);
-                mAdapter.addImage(filePath);
+                mAdapter.addImage(imageUri);
             }
 
             @Override

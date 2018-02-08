@@ -4,9 +4,9 @@
     android:id="@+id/toolbar"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:paddingTop="6dp"
+    android:paddingBottom="6dp"
     android:background="@color/article_primary_color"
-    android:paddingBottom="22dp"
-    android:paddingTop="22dp"
     app:popupTheme="@style/AppTheme.PopupOverlay">
 
     <RelativeLayout
@@ -18,7 +18,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="16dp"
+            android:layout_marginLeft="8dp"
+            android:padding="16dp"
             app:srcCompat="@drawable/close_icon" />
 
         <TextView
@@ -26,6 +27,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
             android:layout_marginRight="16dp"
             android:text="Publish"
             android:textAllCaps="true"

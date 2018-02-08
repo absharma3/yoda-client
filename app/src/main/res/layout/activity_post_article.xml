@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/article_primary_color"
-    tools:context="com.sexology.PostArticleActivity">1
+    tools:context="com.sexology.PostArticleActivity">
 
     <include
         android:id="@+id/toolbar"
@@ -18,39 +18,64 @@
         android:layout_below="@+id/toolbar"
         android:background="@drawable/post_article_toolbr_shadow" />
 
-    <EditText
-        android:id="@+id/headerEt"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/toolbar"
-        android:background="@null"
-        android:gravity="left|center"
-        android:hint="Some Catchy Title ..."
-        android:minHeight="100dp"
-        android:paddingBottom="26dp"
-        android:paddingLeft="12dp"
-        android:paddingRight="12dp"
-        android:paddingTop="26dp"
-        android:textColor="@android:color/white"
-        android:textColorHint="@android:color/white"
-        android:textSize="26sp" />
+        android:fillViewport="true">
 
-    <View
-        android:id="@+id/view"
-        android:layout_width="match_parent"
-        android:layout_height="0.5dp"
-        android:layout_below="@id/headerEt"
-        android:layout_marginLeft="32dp"
-        android:layout_marginRight="32dp"
-        android:background="@android:color/white" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recycler_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/view"
-        android:padding="4dp"
-        android:scrollbars="vertical" />
+            <EditText
+                android:id="@+id/headerEt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:gravity="center"
+                android:hint="Some Catchy Title ..."
+                android:minHeight="100dp"
+                android:paddingBottom="26dp"
+                android:paddingLeft="12dp"
+                android:paddingRight="12dp"
+                android:paddingTop="26dp"
+                android:textColor="@android:color/white"
+                android:textColorHint="@color/white_alpha"
+                android:textSize="26sp" />
+
+            <View
+                android:id="@+id/view"
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_below="@id/headerEt"
+                android:layout_marginLeft="32dp"
+                android:layout_marginRight="32dp"
+                android:background="@android:color/white" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/view"
+                android:padding="4dp"
+                android:scrollbars="vertical" />
+
+            <EditText
+                android:id="@+id/articleDescriptionEt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/recycler_view"
+                android:background="@null"
+                android:gravity="top"
+                android:hint="Write description about your article..."
+                android:minLines="5"
+                android:padding="8dp"
+                android:textColor="@android:color/white"
+                android:textColorHint="@color/white_alpha"
+                android:textSize="14sp" />
+        </RelativeLayout>
+    </ScrollView>
 
     <com.getbase.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_attachment"

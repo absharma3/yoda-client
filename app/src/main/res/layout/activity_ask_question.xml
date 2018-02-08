@@ -34,7 +34,7 @@
             android:paddingRight="12dp"
             android:paddingTop="26dp"
             android:textColor="@android:color/white"
-            android:textColorHint="@android:color/white"
+            android:textColorHint="@color/white_alpha"
             android:textSize="26sp" />
 
         <TextView
@@ -43,7 +43,7 @@
             android:layout_below="@+id/questionEt"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
-            android:background="@color/colorPrimaryDark" />
+            android:background="@android:color/white" />
 
         <EditText
             android:id="@+id/questionDescriptionEt"
