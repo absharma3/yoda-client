@@ -4,6 +4,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import butterknife.ButterKnife;
 
@@ -17,6 +21,22 @@ public class BaseActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState, PersistableBundle persistentState) {
         super.onCreate(savedInstanceState, persistentState);
         ButterKnife.bind(this);
+    }
+
+    public void setToolbar(String title) {
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        ImageView backBtn = toolbar.findViewById(R.id.backBtn);
+        TextView toolbarTitle = toolbar.findViewById(R.id.toolbar_title);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        toolbarTitle.setText(title);
+        backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
     }
 
     public void clearTopAndCallHome() {

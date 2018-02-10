@@ -1,8 +1,12 @@
 package com.sexology.adapter;
 
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.sexology.JokesActivity;
+import com.sexology.R;
 
 import butterknife.ButterKnife;
 
@@ -11,9 +15,16 @@ import butterknife.ButterKnife;
  */
 
 public class JokesAdapter extends RecyclerView.Adapter<JokesAdapter.MyViewHolder> {
+    private final JokesActivity jokesActivity;
+
+    public JokesAdapter(JokesActivity jokesActivity) {
+        this.jokesActivity = jokesActivity;
+    }
+
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return null;
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.jokes_recycler_item, parent, false);
+        return new MyViewHolder(view);
     }
 
     @Override

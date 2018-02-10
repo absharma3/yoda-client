@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -44,6 +45,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     RecyclerView mRecyclerView;
     @BindView(R.id.contentMainLayout)
     RelativeLayout contentMainLayout;
+    private DrawerLayout drawer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +54,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         ButterKnife.bind(this);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
@@ -124,6 +126,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        if (floatingActionsMenu.isExpanded()) floatingActionsMenu.collapse();
+        if (drawer.isDrawerOpen(GravityCompat.START)) drawer.closeDrawer(GravityCompat.START);
+        if (item.getItemId() == R.id.nav_articles)
+            startActivity(new Intent(MainActivity.this, ArticlesActivity.class));
         return false;
     }
 /*
@@ -148,6 +154,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @OnClick(R.id.ask_question_btn)
     public void askQuestionBtnClick() {
+        if (floatingActionsMenu.isExpanded()) floatingActionsMenu.collapse();
         startActivity(new Intent(MainActivity.this, AskQuestionActivity.class));
     }
 }
