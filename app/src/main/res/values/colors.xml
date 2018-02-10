@@ -14,4 +14,6 @@
 
     <color name="article_primary_color">#37474F</color>
     <color name="article_primary_color_dark">#263238</color>
+
+    <color name="backgroundEditText">#5cffffff</color>
 </resources>
