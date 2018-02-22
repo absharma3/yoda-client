@@ -10,6 +10,7 @@
     <uses-permission android:name="android.permission.READ_CONTACTS" />
 
     <application
+        android:name=".YodaApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -58,7 +59,11 @@
             android:theme="@style/askQuestionTheme" />
         <activity android:name=".ArticlesActivity" />
         <activity android:name=".ArticleDetailActivity" />
-        <activity android:name=".JokesActivity"></activity>
+        <activity android:name=".JokesActivity" />
+
+        <activity
+            android:name=".utils.CustomPinActivity"
+            android:label="@string/app_name" />
     </application>
 
 </manifest>

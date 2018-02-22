@@ -8,7 +8,7 @@ import android.widget.TextView;
 
 import com.sexology.model.Question;
 
-public class QuestionDetailActivity extends AppCompatActivity {
+public class QuestionDetailActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -14,4 +14,8 @@
     <dimen name="second_card_height">40dp</dimen>
     <dimen name="second_card_radius">20dp</dimen>
     <dimen name="second_card_radius_on_focus">8dp</dimen>
+    <dimen name="activity_dialog_title_size">16sp</dimen>
+    <dimen name="activity_dialog_content_size">14sp</dimen>
+    <dimen name="activity_dialog_positive_button_size">12sp</dimen>
+    <dimen name="activity_dialog_negative_button_size">12sp</dimen>
 </resources>

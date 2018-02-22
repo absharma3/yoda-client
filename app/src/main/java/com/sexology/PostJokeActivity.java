@@ -6,7 +6,7 @@ import android.os.Bundle;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class PostJokeActivity extends AppCompatActivity {
+public class PostJokeActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

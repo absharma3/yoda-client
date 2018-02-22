@@ -5,7 +5,7 @@ import android.os.Bundle;
 
 import butterknife.ButterKnife;
 
-public class ArticleDetailActivity extends AppCompatActivity {
+public class ArticleDetailActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

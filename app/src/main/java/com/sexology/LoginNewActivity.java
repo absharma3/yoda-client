@@ -23,6 +23,11 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.github.omadahealth.lollipin.lib.managers.AppLock;
+import com.github.omadahealth.lollipin.lib.managers.LockManager;
+import com.sexology.utils.CustomPinActivity;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -30,17 +35,20 @@ import it.sephiroth.android.library.easing.Back;
 import it.sephiroth.android.library.easing.EasingManager;
 
 public class LoginNewActivity extends AppCompatActivity {
+    private static final int REQUEST_CODE_ENABLE_PASSCODE = 101;
+    private static final int REQUEST_CODE_CONFIRM_PASSCODE = 102;
     private ViewGroup rootLayout;
+    private YodaApplication application;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_new);
         ButterKnife.bind(this);
+        application = (YodaApplication) getApplication();
         rootLayout = findViewById(R.id.main_container);
         EditText email = findViewById(R.id.email);
         EditText password = findViewById(R.id.password);
-
         EditText emailS = findViewById(R.id.email_singup);
         EditText passwordS = findViewById(R.id.password_singup);
         EditText passwordC = findViewById(R.id.password_confirm);
@@ -62,11 +70,45 @@ public class LoginNewActivity extends AppCompatActivity {
         emailS.setOnFocusChangeListener(focuslistene);
         passwordS.setOnFocusChangeListener(focuslistene);
         passwordC.setOnFocusChangeListener(focuslistene);
+        if (LockManager.getInstance().isAppLockEnabled()) {
+            Intent intent = new Intent(LoginNewActivity.this, CustomPinActivity.class);
+            intent.putExtra(AppLock.EXTRA_TYPE, AppLock.UNLOCK_PIN);
+            intent.putExtra("login", true);
+            startActivityForResult(intent, REQUEST_CODE_CONFIRM_PASSCODE);
+        }
     }
 
     @OnClick(R.id.login_tv)
     public void loginClicked() {
         startActivity(new Intent(LoginNewActivity.this, MainActivity.class));
+    }
+
+    @OnClick({R.id.enablePasscodeBtn})
+    public void onBtnClicks(View view) {
+        switch (view.getId()) {
+            case R.id.enablePasscodeBtn:
+                Intent intent = new Intent(LoginNewActivity.this, CustomPinActivity.class);
+                intent.putExtra(AppLock.EXTRA_TYPE, AppLock.ENABLE_PINLOCK);
+                intent.putExtra("login", true);
+                startActivityForResult(intent, REQUEST_CODE_ENABLE_PASSCODE);
+                break;
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode) {
+            case REQUEST_CODE_ENABLE_PASSCODE:
+                if (resultCode == RESULT_CANCELED) return;
+                Toast.makeText(this, "PinCode enabled", Toast.LENGTH_SHORT).show();
+                break;
+            case REQUEST_CODE_CONFIRM_PASSCODE:
+                if (resultCode == RESULT_CANCELED) return;
+                Toast.makeText(this, "PinCode Confirmed", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(LoginNewActivity.this, MainActivity.class));
+                break;
+        }
     }
 
     public void showSingUp(View view) {

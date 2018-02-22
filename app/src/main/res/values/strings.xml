@@ -36,4 +36,9 @@
     <string name="fb_icon">Facebook icon</string>
     <string name="instagram_icon">Instagram Icon</string>
     <string name="lorem_ipsum">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</string>
+    <string name="activity_dialog_title">Forgot Password</string>
+    <string name="activity_dialog_accept">Accept</string>
+    <string name="activity_dialog_content">Content</string>
+    <string name="activity_dialog_decline">Decline</string>
+    <string name="chane_passcode_text">If you want to change the Passcode, then login using email and from settings change the Passcode.</string>
 </resources>

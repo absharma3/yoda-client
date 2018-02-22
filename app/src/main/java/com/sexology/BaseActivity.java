@@ -9,13 +9,15 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.github.omadahealth.lollipin.lib.PinCompatActivity;
+
 import butterknife.ButterKnife;
 
 /**
  * Created by piyush on 9/7/17.
  */
 
-public class BaseActivity extends AppCompatActivity {
+public class BaseActivity extends PinCompatActivity {
 
     @Override
     public void onCreate(Bundle savedInstanceState, PersistableBundle persistentState) {
@@ -66,5 +68,6 @@ public class BaseActivity extends AppCompatActivity {
         startActivity(intent);
         finish();
     }*/
+
 
 }

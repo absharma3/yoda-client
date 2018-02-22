@@ -23,7 +23,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class PostArticleActivity extends AppCompatActivity {
+public class PostArticleActivity extends BaseActivity {
     private ImagePicker imagePicker = new ImagePicker();
     @BindView(R.id.recycler_view)
     RecyclerView mRecyclerView;
